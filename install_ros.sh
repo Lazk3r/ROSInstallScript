@@ -32,10 +32,11 @@ echo "🔹 Configurando variables de entorno..."
 echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
 echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
 echo "export TURTLEBOT3_MODEL=burger" >> ~/.bashrc
-source ~/.bashrc
+
+echo "✅ Variables de entorno configuradas. Se aplicarán en la próxima terminal."
 
 echo "🔹 Verificando configuración de ROS..."
-export | grep ROS
+export | grep ROS || echo "⚠️ Aún no se aplican las variables. Abre una nueva terminal para que surtan efecto."
 
 echo "🔹 Instalando herramientas adicionales..."
 sudo apt install -y python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential
@@ -44,7 +45,6 @@ echo "🔹 Creando y compilando workspace de ROS..."
 mkdir -p ~/catkin_ws/src
 cd ~/catkin_ws
 catkin_make
-source devel/setup.bash
 
 echo "🔹 Instalando paquetes adicionales..."
 sudo apt install -y python-is-python3 ros-noetic-tf2-tools ros-noetic-robot-controllers ros-noetic-joy ros-noetic-ros-control \
@@ -72,3 +72,4 @@ cd ~/catkin_ws
 catkin_make
 
 echo "✅ Instalación y configuración completadas con éxito."
+echo "🚀 Abre una nueva terminal para aplicar las variables de entorno y prueba con: roscore"
